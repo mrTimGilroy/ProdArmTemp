@@ -52,10 +52,6 @@
    "storageAccount": {
             "type": "string",
        "defaultValue": "astoragename",
-       "allowedvalues": [
-           "astoragename",
-           "serverslogsstore"
-            ],
        "metadata":{
            "description": "Storage Space for Diagnostic, Boot Screenshots & performance Logs ."
        }
