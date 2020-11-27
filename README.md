@@ -3,7 +3,9 @@ Templates created that have been tested and proven suitable for the function the
 
 
 Files.
-DepWinVMToVNET.json is a fairly full feature build of a Windows 2012R2 Server to an existing VNET in the same resource group.  (Dependency on creation of VNET and Subnets along with a storage account for diagnostics, log files and Performance monitoring.
+DepWinVMToVNET.json is a fairly full feature build of a Windows 2012R2 Server to an existing VNET in the same resource group.  
+
+Dependency: VNET and Subnets & KeyVault along with a storage account for diagnostics, log files and Performance monitoring.
   
   Option on 2 Sizes:
     Small 'Standard_B2ms'
