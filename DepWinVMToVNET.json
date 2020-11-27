@@ -51,10 +51,10 @@
    },
    "storageAccount": {
             "type": "string",
-       "defaultValue": "hubwinvmqxqx7fvdwnrec",
+       "defaultValue": "astoragename",
        "allowedvalues": [
-           "hubwinvmqxqx7fvdwnrec",
-           "chauntryserverslogsstore"
+           "astoragename",
+           "serverslogsstore"
             ],
        "metadata":{
            "description": "Storage Space for Diagnostic, Boot Screenshots & performance Logs ."
