@@ -1,5 +1,5 @@
 # ProdArmTemp
-Templates created that have been tested and proven suitable for the function they were created for.
+Templates created that have been tested and proven suitable for the function they were created for.  An assumption was made for these files that existing infrastructure is in place. For example VM deply templates expect VNET, KeyVault and StorageAccount to have been provisioned.
 
 
 Files.
