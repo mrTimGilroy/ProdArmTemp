@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "administratorLogin": {
+            "type": "string"
+        },
+        "administratorLoginPassword": {
+            "type": "securestring"
+        },
+        "serverName": {
+            "type": "string",
+            "defaultValue": "ch-mariadb-002"
+        },
+        "tnscipaddr": 
+        {
+            "type": "array",
+            "defaultValue": [     
+            "82.69.4.203",
+            "197.92.102.201",
+            "8.8.8.8",
+            "22.22.2.22"
+        ]
+        }
+    },
+    "variables": {
+        "location": "uksouth",
+        "backupRetentionDays": 10,
+        "storageAutoGrow": "Enabled",
+       "skuObject": {
+                "name": "GP_Gen5_2",
+                "tier": "GeneralPurpose",
+                "capacity": 2,
+                "size": 102400,
+                "family": "Gen5"
+            },
+        "infrastructureEncryption":"Disabled", 
+        "geoRedundantBackup": "Disabled",
+        "version": "10.3",
+         "sslEnforcement": "Enabled" 
+        },
+    "resources": [
+        {
+            "type": "Microsoft.DBforMariaDB/servers",
+            "apiVersion": "2018-06-01",
+            "kind": "",
+            "location": "[variables('location')]",
+            "name": "[parameters('serverName')]",
+            "sku": "[variables('skuObject')]",
+            "properties": {
+                "version": "[variables('version')]",
+                 "sslEnforcement": "[variables('sslEnforcement')]",
+                "administratorLogin": "[parameters('administratorLogin')]",
+                "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+                "storageProfile": {
+                  "storageMB": 102400,
+                  "backupRetentionDays": "[variables('backupRetentionDays')]",
+                  "geoRedundantBackup": "[variables('geoRedundantBackup')]",
+                  "storageAutoGrow": "[variables('storageAutoGrow')]"
+                },
+                "infrastructureEncryption": "[variables('infrastructureEncryption')]"            }
+        },
+        {
+            "type": "Microsoft.DBforMariaDB/servers/firewallRules",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('serverName'), '/tnscswipRule',copyIndex())]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DBforMariaDB/servers', parameters('serverName'))]"
+            ],
+            "properties": {
+            "startIpAddress": "[parameters('tnscipaddr')[copyIndex()]]",
+            "endIpAddress": "[parameters('tnscipaddr')[copyIndex()]]"
+            },
+            "copy": {
+            "name": "mariadbFirewallRules",
+            "count": "[length(parameters('tnscipaddr'))]"
+            }
+        }
+        
+    ]
+}
