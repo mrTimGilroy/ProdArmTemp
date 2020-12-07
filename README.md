@@ -28,5 +28,9 @@ Dependency: VNET and Subnets & KeyVault along with a storage account for diagnos
   Management Tools
  
   
+  Azure MariaDB Server deployment script.
+  Default SSL
+  Example of Count for adding Firewall rules
+  Capacity set at 2 Cores and General Purpose tier.  
 
 Usual Disclaimers apply.
