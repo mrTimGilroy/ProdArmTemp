@@ -5,9 +5,3 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: AzurePowerShell@5
-  inputs:
-    azureSubscription: 'Microsoft Azure (6ad35c27-c298-46b5-8609-0abd71b540a9)'
-    ScriptType: 'InlineScript'
-    Inline: 'Get-AzVM'
